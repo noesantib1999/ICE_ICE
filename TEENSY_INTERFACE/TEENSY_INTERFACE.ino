@@ -34,12 +34,13 @@ float setServoPos(Servo &servoObj,float cmdPos){
   return cmdPos_constrained; // Rewrite the command position to the constrained position.
 }
 
-void handleSerialOutput(float cmd_Vel_AP, float cmd_Pos_AP, float cmd_Vel_LR, float cmd_Pos_LR)
+void handleSerialOutput(float cmd_Vel_AP, float cmd_Pos_AP, float cmd_Vel_LR, float cmd_Pos_LR, float t_loop)
 {
-  Serial.print("AP Vel: "); Serial.print(cmd_Vel_AP); Serial.print("\n");
-  Serial.print("AP Pos: "); Serial.print(cmd_Pos_AP); Serial.print("\n");
-  Serial.print("LR Vel: "); Serial.print(cmd_Vel_LR); Serial.print("\n");
-  Serial.print("LR Pos: "); Serial.print(cmd_Pos_LR); Serial.print("\n");
+  Serial.print("AP_Vel:"); Serial.print(cmd_Vel_AP); Serial.print("\n");
+  Serial.print("AP_Pos:"); Serial.print(cmd_Pos_AP); Serial.print("\n");
+  Serial.print("LR_Vel:"); Serial.print(cmd_Vel_LR); Serial.print("\n");
+  Serial.print("LR_Pos:"); Serial.print(cmd_Pos_LR); Serial.print("\n");
+  Serial.print("T_loop:"); Serial.print(t_loop); Serial.print("\n");
   Serial.println("________________________________________");
 }
 
@@ -67,7 +68,7 @@ void setup() {
   servo_LR.attach(servo_LR_pin);
 
   if (!emulationMode){
-    Serial.begin(115200);
+    Serial.begin(9600);
     Serial.println("Serial connected, running simple servo commands...");
     delay(500);
   }
@@ -78,24 +79,25 @@ void setup() {
 
   temp_Pos_AP = setServoPos(servo_AP, servo_center_val+10);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_val+10);
-    if (!emulationMode) Serial.print("AP pos: "); Serial.print(temp_Pos_AP); Serial.print(" | LR pos: "); Serial.print(temp_Pos_LR); 
+  //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
   delay(2000);
   temp_Pos_AP = setServoPos(servo_AP, servo_center_val);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_val);
-    if (!emulationMode) Serial.print("AP pos: "); Serial.print(temp_Pos_AP); Serial.print(" | LR pos: "); Serial.print(temp_Pos_LR); 
+  //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
   delay(2000);
   temp_Pos_AP = setServoPos(servo_AP, servo_center_val-10);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_val-10);
-    if (!emulationMode) Serial.print("AP pos: "); Serial.print(temp_Pos_AP); Serial.print(" | LR pos: "); Serial.print(temp_Pos_LR); 
+  //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
   delay(2000);
   temp_Pos_AP = setServoPos(servo_AP, servo_center_val);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_val);
-    if (!emulationMode) Serial.print("AP pos: "); Serial.print(temp_Pos_AP); Serial.print(" | LR pos: "); Serial.print(temp_Pos_LR); 
+  //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
   delay(2000);
 
   if (!emulationMode){
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("Listening to serial input\n");
+  Serial.clear();
   }
 
 }
@@ -104,10 +106,11 @@ void setup() {
 void loop() {
   t0 = micros();
 
-
-  if (!emulationMode) handleSerialInput(&cmd_Vel_AP, &cmd_Vel_LR); 
-  
-  else {
+  if (!emulationMode)
+  {
+     handleSerialInput(&cmd_Vel_AP, &cmd_Vel_LR); 
+     delay(10);
+  } else {
     t_total += micros();
     if (t_total>=3000000) { // Cycle switches every 3 seconds
       t_total = t_total%3000000; 
@@ -145,7 +148,7 @@ void loop() {
   cmd_Pos_AP = setServoPos(servo_AP, cmd_Pos_AP); // If the resulting command position fell outside the range, it will be rewritten here. Otherwise it's identical.
   cmd_Pos_LR = setServoPos(servo_LR, cmd_Pos_LR);
 
-  if (!emulationMode) handleSerialOutput(cmd_Vel_AP, cmd_Pos_AP, cmd_Vel_LR, cmd_Pos_LR); // Comment this out to not get bombarded with numbers
+  if (!emulationMode) handleSerialOutput(cmd_Vel_AP, cmd_Pos_AP, cmd_Vel_LR, cmd_Pos_LR, t_loop); // Comment this out to not get bombarded with numbers
 
   t_loop = micros()-t0;
 }
