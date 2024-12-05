@@ -109,7 +109,7 @@ void loop() {
   if (!emulationMode)
   {
      handleSerialInput(&cmd_Vel_AP, &cmd_Vel_LR); 
-     delay(10);
+     delay(10); // Very important - The main loop runs very fast (several us), so this slows it down to a reasonable refresh rate.
   } else {
     t_total += micros();
     if (t_total>=3000000) { // Cycle switches every 3 seconds
