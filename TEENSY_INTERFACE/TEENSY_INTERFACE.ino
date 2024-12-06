@@ -1,20 +1,19 @@
 #include <Servo.h>
-#include <ADC.h>
 
 // Pin definitions:
 #define servo_AP_pin 13
 #define servo_LR_pin 14
 
 // System definitions:
-#define servo_pos_limit 60 // Maximum amount servo should turn in a given direction, degrees
-#define servo_center_val 90 // Servo position when catheter is straight
+#define servo_pos_limit 135 // Maximum amount servo should turn in a given direction in degrees, max is 135
+#define servo_center_val 135 // Servo position when catheter is straight
 
 Servo servo_AP;
 Servo servo_LR;
 
 bool emulationMode = false; // When true, will not attempt serial connection and will go through some set commands
-                           // When false, will connect to serial and receive/plot commands/values
-        int loopstate = 0; // Ignore if not running emulation mode
+                            // When false, will connect to serial and receive/plot commands/values
+        int loopstate = 0;  // Ignore if not running emulation mode
 
 float cmd_Vel_AP = 0; // Units of degrees per second
 float cmd_Vel_LR = 0;
@@ -109,7 +108,6 @@ void loop() {
   if (!emulationMode)
   {
      handleSerialInput(&cmd_Vel_AP, &cmd_Vel_LR); 
-     delay(10); // Very important - The main loop runs very fast (several us), so this slows it down to a reasonable refresh rate.
   } else {
     t_total += micros();
     if (t_total>=3000000) { // Cycle switches every 3 seconds
@@ -137,6 +135,8 @@ void loop() {
     }
     // 2.5 for 3 seconds, 10 for 3 seconds, then switch and do the same in reverse
   }
+
+  delay(10); // Very important - The main loop runs very fast (several us), so this slows it down to a reasonable refresh rate.
 
   // This block adds a step to the command position dictated by the command velocity
   float cmd_step_AP = cmd_Vel_AP*t_loop/1000000; //dx = dx/dt * dt
