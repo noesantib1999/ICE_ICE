@@ -18,8 +18,8 @@ Instructions:
 #include <Servo.h>
 
 // Pin definitions:
-#define servo_AP_pin 13
-#define servo_LR_pin 14
+#define servo_AP_pin 35
+#define servo_LR_pin 36
 
 // System definitions:
 #define servo_pos_limit 135 // Maximum amount servo should turn in a given direction in degrees, max is 135
@@ -63,8 +63,8 @@ void setup() {
   Serial.println("Serial connected, running initial setup: ");
   delay(500);
 
-  servo_AP.attach(servo_AP_pin);
-  servo_LR.attach(servo_LR_pin);
+  servo_AP.attach(servo_AP_pin,500,2500);
+  servo_LR.attach(servo_LR_pin,500,2500);
 
   // Put both servos to middle position
   cmd_Pos_AP = setServoPos(servo_AP,servo_center_pos);
@@ -84,5 +84,5 @@ void loop() {
 
   Serial.print("AP_Pos:"); Serial.println(cmd_Pos_AP);
   Serial.print("LR_Pos:"); Serial.println(cmd_Pos_LR);
-  Serial.println("***************")
+  Serial.println("***************");
 }

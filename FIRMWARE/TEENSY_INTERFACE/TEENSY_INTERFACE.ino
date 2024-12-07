@@ -19,11 +19,11 @@ Instructions:
 #include <Servo.h>
 
 // Pin definitions:
-#define servo_AP_pin 13
-#define servo_LR_pin 14
+#define servo_AP_pin 35
+#define servo_LR_pin 36
 
 // System definitions:
-#define servo_pos_limit 135 // Maximum amount servo should turn in a given direction in degrees, max is 135
+#define servo_pos_limit 90 // Maximum amount servo should turn in a given direction in degrees, max is 135
 #define servo_center_pos 135 // Servo position when catheter is straight
 
 Servo servo_AP;
@@ -36,12 +36,13 @@ bool emulationMode = false; // When true, will not attempt serial connection and
 float cmd_Vel_AP = 0; // Units of degrees per second
 float cmd_Vel_LR = 0;
 
-float cmd_Pos_AP = 0; // Units of degrees
-float cmd_Pos_LR = 0;
+float cmd_Pos_AP = servo_center_pos; // Units of degrees. Set to center_pos so the code starts it here.
+float cmd_Pos_LR = servo_center_pos;
 
 unsigned long t0 = micros();
 unsigned long t_loop = 0;
 unsigned long t_total = 0;
+unsigned long t_cycle_0 = 0;
 
 float setServoPos(Servo &servoObj,float cmdPos){
   //cmdPos is in degrees. This needs to be constrained and then remapped to microseconds
@@ -81,8 +82,8 @@ void handleSerialInput(float* cmd_Vel_AP, float* cmd_Vel_LR){
 }
 
 void setup() {
-  servo_AP.attach(servo_AP_pin);
-  servo_LR.attach(servo_LR_pin);
+  servo_AP.attach(servo_AP_pin,500,2500);
+  servo_LR.attach(servo_LR_pin,500,2500);
 
   if (!emulationMode){
     Serial.begin(9600);
@@ -127,31 +128,32 @@ void loop() {
   {
      handleSerialInput(&cmd_Vel_AP, &cmd_Vel_LR); 
   } else {
-    t_total += micros();
+    t_total = micros()-t_cycle_0;
     if (t_total>=3000000) { // Cycle switches every 3 seconds
-      t_total = t_total%3000000; 
+      t_cycle_0 = micros();
       loopstate = (loopstate+1)%4; // there are 4 cycle states
+      // Serial.println(loopstate);
     }
 
     switch (loopstate) {
       case 0:
-        cmd_Vel_AP = 2.5;
-        cmd_Vel_LR = 2.5;
-        break;
-      case 1:
         cmd_Vel_AP = 10;
         cmd_Vel_LR = 10;
         break;
-      case 2:
-        cmd_Vel_AP = -2.5;
-        cmd_Vel_LR = -2.5;
+      case 1:
+        cmd_Vel_AP = 20;
+        cmd_Vel_LR = 20;
         break;
-      case 3:
+      case 2:
         cmd_Vel_AP = -10;
         cmd_Vel_LR = -10;
         break;
+      case 3:
+        cmd_Vel_AP = -20;
+        cmd_Vel_LR = -20;
+        break;
     }
-    // 2.5 for 3 seconds, 10 for 3 seconds, then switch and do the same in reverse
+    // low speed for 3 seconds, higher speed for 3 seconds, then switch and do the same in reverse
   }
 
   delay(10); // Very important - The main loop runs very fast (several us), so this slows it down to a reasonable refresh rate.
