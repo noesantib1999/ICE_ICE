@@ -34,6 +34,7 @@ After printing, begin assembling the components. The printed parts are designed 
 
 ### Electrical Assembly:
 Wire the two Miuzei servos to the Teensy 4.0 as shown in the provided circuit diagram. Ensure all electrical connections are made securely, following the correct wiring paths for power and signal transmission between the components. Verify that all connections are stable and functional before proceeding to the next steps in testing and calibration.
+![image](https://github.com/user-attachments/assets/4ba8add6-169e-4741-865c-dd9f1d21a488)
 
 
 ## Firmware
