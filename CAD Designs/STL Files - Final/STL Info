@@ -1,1 +1,21 @@
+3D Printing Instructions for STL Files
 
+Before Printing:
+- Find a 3D printer; make sure it is properly calibrated
+- Have sufficient PLA filament (1.75 mm preferably)
+- Download 3D printing software for making the .gcode files
+
+Items to print:
+- Shaft_Support (x1)
+- LR_Gear (x1)
+- PA_Gear (x1)
+- LargeGear (x1)
+- EvenLargerGear (x1)
+- ICE_Support_Front (x1)
+- ICE_Support_FrontTop (x1) 
+- ICE_Support_Back (x1)
+- ICE_Support_BackTop (x1)
+- SmallGear_0.5X (x4)
+
+Recommendation: There are three (3) variations of the SmallGear STL file, each having a different internal diameter (ID) in inches: 0.50, 0.51, and 0.52. 
+Depending on the sizing error of your printer, print the gear with appropriate ID to make sure it fits the d-profile shaft.
