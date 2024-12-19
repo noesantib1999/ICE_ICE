@@ -2,7 +2,9 @@
 Testing of 2-DOF Robotic ICE Catheter Manipulator for Minimally Invasive, Intracardiac Surgery
 
 ## Overview 
-Minimally invasive surgery (MIS) and robot-assisted surgery (RAS) are becoming more commonly used approaches to treat high-risk procedures due to their small-incision operation area, and enhanced precision and control, respectively. By combining these two methods together, you can get increased efficiency and effectiveness in various surgical operations. In cardiology, for example, they allowed for reduced mortality rates, lower median length of stay, less blood transfusions, and smaller risks of infection across different studies. 
+Minimally invasive surgery (MIS) and robot-assisted surgery (RAS) are becoming more commonly used approaches to treat high-risk procedures due to their small-incision operation area, and enhanced precision and control, respectively. By combining these two methods together, you can get increased efficiency and effectiveness in various surgical operations. In cardiology, for example, they allowed for reduced mortality rates, lower median length of stay, less blood transfusions, and decreased risks of infection across different studies. 
+
+jynfyh
 
 ### Goal
 Design, build, and test a 2-DOF robotic mechanism adapter for navigation of an intracardiac
