@@ -19,7 +19,7 @@ echocardiography (ICE) catheter through a heart
 - 3D Printed Parts (PLA, 15% infill) - see CAD Designs folder for files
 - Teensy 4.0 w/ Micro-USB to USB cable
 - 2 Miuzei High-Torque (25 kg*cm) Waterproof Servo Motors w/
-- AC-to-DC Power Supply (5.9 V)
+- AC-to-DC Power Supply (~5.9 V)
 - 2 D-Profile Rotary Shafts (1/2" Diameter, 6" Long, 1045 Carbon Steel) - McMaster number: 8632T134
 - 4 Oil-Embedded Bronze Sleeve Bearings (5/8" Housing ID, 5/16" Long, for 1/2" Shaft Diameter) - McMaster number: 6391K736
 - Breadboard
