@@ -2,13 +2,28 @@
 Testing of 2-DOF Robotic ICE Catheter Manipulator for Minimally Invasive, Intracardiac Surgery
 
 ## Overview 
-Minimally invasive surgery (MIS) and robot-assisted surgery (RAS) are becoming more commonly used approaches to treat high-risk procedures due to their small-incision operation area, and enhanced precision and control, respectively. By combining these two methods together, you can get increased efficiency and effectiveness in various surgical operations. In cardiology, for example, they allowed for reduced mortality rates, lower median length of stay, less blood transfusions, and decreased risks of infection across different studies. 
+### Background
+Minimally invasive surgery (MIS) and robot-assisted surgery (RAS) are becoming more commonly used approaches to treat high-risk procedures due to their small-incision operation area, and enhanced precision and control, respectively. By combining these two methods together, you can get increased efficiency and effectiveness in various surgical operations. In cardiology, for example, they allow for reduced mortality rates, lower median length of stay, less blood transfusions, and decreased risks of infection across different studies. Among the different areas in cardiology, echocardiography (or cardiac ultrasound) is one where RAS is still being  prototyped. 
 
-jynfyh
+Transesophageal echocardiography (TEE) in particular, a historically common MIS procedure for heart ultrasound through the esophagus, has been the main method used to develop robot-assisted techniques, with outcomes such as reduced radiation exposure, precise, flixible control, and low-latency teleoperations. However, intracardiac echocardiography (ICE) is currently the most adopted method for examining ultrasound due to its thin catheter profile and ability to traverse through the heart chambers. Moreover, compared to TEE, ICE procedures tend to result in shorter length of stay, reduced fluoroscopy and sedation, and closer field of view to desired heart regions. However, this approach is still novel in robotic integration, leaving an opportunity for development of an ICE robotically-assisted system.
 
 ### Goal
 Design, build, and test a 2-DOF robotic mechanism adapter for navigation of an intracardiac
-echocardiography (ICE) catheter through a porcine heart via teleoperation and pedal movement
+echocardiography (ICE) catheter through a heart
+## Hardware
+### Medical Equipment
+- ACUSON Acunav 8F Ultrasound Catheter (for Siemens Systems) 
+- ACUSON P500 Ultrasound System
+
+### Materials
+- 3D Printed Parts (PLA, 15% infill) - see CAD Designs folder for files
+- Teensy 4.0 w/ Micro-USB to USB cable
+- 2 Miuzei High-Torque (25 kg*cm) Waterproof Servo Motors w/
+- AC-to-DC Power Supply (5.9 V)
+- 2 D-Profile Rotary Shafts (1/2" Diameter, 6" Long, 1045 Carbon Steel) - McMaster number: 8632T134
+- 4 Oil-Embedded Bronze Sleeve Bearings
+- Breadboard
+- Wires
 
 ## Assembly
 ### CAD Assembly:
