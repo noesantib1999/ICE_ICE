@@ -21,7 +21,7 @@ echocardiography (ICE) catheter through a heart
 - 2 Miuzei High-Torque (25 kg*cm) Waterproof Servo Motors w/
 - AC-to-DC Power Supply (5.9 V)
 - 2 D-Profile Rotary Shafts (1/2" Diameter, 6" Long, 1045 Carbon Steel) - McMaster number: 8632T134
-- 4 Oil-Embedded Bronze Sleeve Bearings
+- 4 Oil-Embedded Bronze Sleeve Bearings (5/8" Housing ID, 5/16" Long, for 1/2" Shaft Diameter) - McMaster number: 6391K736
 - Breadboard
 - Wires
 
@@ -34,6 +34,7 @@ After printing, begin assembling the components. The printed parts are designed 
 
 ### Electrical Assembly:
 Wire the two Miuzei servos to the Teensy 4.0 as shown in the provided circuit diagram. Ensure all electrical connections are made securely, following the correct wiring paths for power and signal transmission between the components. Verify that all connections are stable and functional before proceeding to the next steps in testing and calibration.
+
 ![image](https://github.com/user-attachments/assets/4ba8add6-169e-4741-865c-dd9f1d21a488)
 
 
