@@ -2,10 +2,13 @@ import tkinter as tk
 import math
 import serial
 import threading
+from tkinter import Label
+import cv2
+from PIL import Image, ImageTk
 
 # Initialize the serial connection
 try:
-    ser = serial.Serial('COM8', 9600, timeout=1)
+    ser = serial.Serial('COM8', 9600, timeout=1) # update port depending on serial connection w/ Teensy
 except Exception as e:
     print(f"Error opening serial port: {e}")
     ser = None
@@ -25,34 +28,72 @@ def serial_listener():
         except Exception as e:
             print(f"Error reading from serial: {e}")
 
+def update_frame():
+    # Grab a frame from the capture device
+    ret, frame = capture.read()
+    if not ret:
+        # If frame not received, just try again after 5 ms
+        root.after(5, update_frame)
+        return
+
+    # Convert the frame from BGR (OpenCV format) to RGB
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    # Convert the image to PIL format
+    img_pil = Image.fromarray(frame_rgb)
+
+    # Convert PIL image to ImageTk format
+    img_tk = ImageTk.PhotoImage(image=img_pil)
+
+    # Update the label with the new image
+    video_label.img_tk = img_tk
+    video_label.configure(image=img_tk)
+
+    # Prepare for next frame update
+    root.after(5, update_frame)
+
 # Start the serial listener thread
 listener_thread = threading.Thread(target=serial_listener, daemon=True)
 listener_thread.start()
 
 # Initialize the main window
 root = tk.Tk()
-root.title("GUI")
-root.geometry("640x480")
+root.title("Robotic ICE Prototype Interface")
+root.geometry("1530x720")
 root.configure(background="white")
 root.resizable(False, False)
 
+# Create a label variable to record the video frames
+video_label = Label(root)
+video_label.pack()
+video_label.place(x=250, y=0)
+
+# Attempt to open the video capture device from USB connection; make sure it is recognized as camera input.
+# Try changing 0 to 1, 2, etc. if you have multiple cameras.
+capture = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+
+# Set resolutions and frame rate if the capture unit has any.
+capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+#capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
+#capture.set(cv2.CAP_PROP_FPS, 60)
+
 # Frames for layout
-frame1 = tk.Frame(root, width=150, height=480, bg="gray")
+frame1 = tk.Frame(root, width=250, height=720, bg="gray")
 frame1.pack(side=tk.LEFT)
 
-frame2 = tk.Frame(root, width=470, height=480, bg="gray")
-frame2.pack(side=tk.RIGHT)
+#frame2 = tk.Frame(root, width=470, height=480, bg="gray")
+#frame2.pack(side=tk.RIGHT)
 
 # Delay control variable
 delay_value = tk.IntVar(value=10)  # Default delay is 10
 
 # Radiobuttons to select the delay
-radio1 = tk.Radiobutton(frame1, text="Delay: 1", variable=delay_value, value=1, bg="gray")
-radio2 = tk.Radiobutton(frame1, text="Delay: 10", variable=delay_value, value=10, bg="gray")
+radio1 = tk.Radiobutton(frame1, text="Delay: 10", variable=delay_value, value=10, bg="gray")
+radio2 = tk.Radiobutton(frame1, text="Delay: 50", variable=delay_value, value=50, bg="gray")
 radio3 = tk.Radiobutton(frame1, text="Delay: 100", variable=delay_value, value=100, bg="gray")
-radio1.place(x=10, y=50)
-radio2.place(x=10, y=80)
-radio3.place(x=10, y=110)
+radio1.place(x=5, y=155)
+radio2.place(x=5, y=185)
+radio3.place(x=5, y=215)
 
 # Global variables
 e_stop_active = False
@@ -63,12 +104,12 @@ circle_radius = 100
 current_marker = None
 
 # Labels for the scrollbars
-label1 = tk.Label(frame2, text="R/L: 0", bg="gray", fg="black")
-label1.place(x=340, y=15)
-label2 = tk.Label(frame2, text="A/P: 0", bg="gray", fg="black")
-label2.place(x=410, y=15)
-label7 = tk.Label(frame2, text="Coordinates: (0, 0)", bg="gray", fg="black")
-label7.place(x=90, y=100)
+label1 = tk.Label(frame1, text="R/L: 0", bg="gray", fg="black")
+label1.place(x=117, y=100)
+label2 = tk.Label(frame1, text="A/P: 0", bg="gray", fg="black")
+label2.place(x=187, y=100)
+label7 = tk.Label(frame1, text="Coordinates: (0, 0)", bg="gray", fg="black")
+label7.place(x=75, y=290)
 
 def update_labels():
     """Update labels and send current values to the serial port."""
@@ -166,7 +207,7 @@ def reset_marker():
 
 # Canvas for drawing
 canvas = tk.Canvas(frame2, width=200, height=200, bg="gray", highlightthickness=0)
-canvas.place(x=50, y=150)
+canvas.place(x=25, y=340)
 
 # Draw circle and cross lines
 canvas.create_oval(circle_center_x - circle_radius, circle_center_y - circle_radius,
@@ -180,32 +221,40 @@ canvas.create_line(circle_center_x, circle_center_y - circle_radius,
                    fill="black", width=2)
 
 # Direction labels on canvas
-label3 = tk.Label(frame2, text="A", bg="gray", fg="black")
-label3.place(x=145, y=125)
-label4 = tk.Label(frame2, text="P", bg="gray", fg="black")
-label4.place(x=145, y=350)
-label5 = tk.Label(frame2, text="L", bg="gray", fg="black")
-label5.place(x=35, y=237)
-label6 = tk.Label(frame2, text="R", bg="gray", fg="black")
-label6.place(x=255, y=237)
+label3 = tk.Label(frame1, text="A", bg="gray", fg="black")
+label3.place(x=119, y=315)
+label4 = tk.Label(frame1, text="P", bg="gray", fg="black")
+label4.place(x=119, y=545)
+label5 = tk.Label(frame1, text="L", bg="gray", fg="black")
+label5.place(x=8, y=428)
+label6 = tk.Label(frame1, text="R", bg="gray", fg="black")
+label6.place(x=232, y=428)
 
 # Bind the canvas click event
 canvas.bind("<Button-1>", click)
 
 # Scrollbars with a command that updates labels and sends values automatically
-scrollbar1 = tk.Scale(frame2, from_=100, to=-100, orient=tk.VERTICAL, bg="white", width=20,
+scrollbar1 = tk.Scale(frame1, from_=100, to=-100, orient=tk.VERTICAL, bg="white", width=20,
                       command=lambda val: update_labels())
-scrollbar1.place(x=330, y=40, height=150)
+scrollbar1.place(x=110, y=125, height=150)
 
-scrollbar2 = tk.Scale(frame2, from_=100, to=-100, orient=tk.VERTICAL, bg="white", width=20,
+scrollbar2 = tk.Scale(frame1, from_=100, to=-100, orient=tk.VERTICAL, bg="white", width=20,
                       command=lambda val: update_labels())
-scrollbar2.place(x=400, y=40, height=150)
+scrollbar2.place(x=180, y=125, height=150)
 
 # E-STOP button
-button = tk.Button(frame1, text="E-STOP", bg="red", width=15, height=2, command=reset_marker)
-button.place(x=15, y=400)
+button = tk.Button(frame1, text="E-STOP", bg="red", width=30, height=4, command=reset_marker)
+e_stop_button.place(x=15, y=15)
+
+
+# Start updating frames
+update_frame()
 
 # Initial label and serial update (in case we start at 0,0)
 update_labels()
 
 root.mainloop()
+
+# Release resources when the window is closed
+capture.release()
+cv2.destroyAllWindows()
