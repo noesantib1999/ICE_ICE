@@ -76,7 +76,7 @@ The experimental setup consisted of having the robotic ICE catheter connected to
 The TEENSY_INTERFACE.ino code is uploaded into the Teensy 4.0 microcontroller, and remains connected via USB to the main computer. After closing the Arduino IDE program, go to a Python prorgamming software, open GUI_Live.py, and run the GUI. After the GUI is opened, the ultrasound tip of the ICE catheter is inserted into the container with the human heart. From here, the catheter can be oriented through clicking on the coordinate system or the scrollbars in the GUI.
 
 ### "Teleoperations" via video conferencing application
-One extra step 
+One extra step considered for a method of teleoperation was the use of video conferencing software.
 
 ## Results
 
