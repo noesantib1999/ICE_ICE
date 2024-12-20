@@ -97,11 +97,20 @@ The experimental setup consisted of having the robotic ICE catheter connected to
 
 The TEENSY_INTERFACE.ino code is uploaded into the Teensy 4.0 microcontroller, and remains connected via USB to the main computer. After closing the Arduino IDE program, go to a Python prorgamming software, open GUI_Live.py, and run the GUI. After the GUI is opened, the ultrasound tip of the ICE catheter is inserted into the container with the human heart. From here, the catheter can be oriented through clicking on the coordinate system or the scrollbars in the GUI.
 
+Movement of the catheter through the heart for this experiment is straightforward: the catheter will enter through the inferior vena cava (IVC) and examine the right atrium. Some movements with the GUI would be performed before moving forward to the right ventricle, where the experiment concludes.
+
 ### "Teleoperations" via video conferencing application
 One extra step considered for a method of teleoperation is the use of video conferencing software. By having two computers access the same conference link, the main computer (connected to the Teensy 4.0) can grant desktop control to the external computer and the latter can guide the ICE catheter through the GUI program. 
 
 ![VC_Tele](https://github.com/user-attachments/assets/8a37e7d6-7cf4-4bc2-9a2e-971435b32b6e)
 
 ## Results
+### In-Situ
 
+The experiments were attempted on two different human hearts. For Heart #1, placed in a small container with water, the catheter entered through the IVC and was able to reach the right atrium. However, after moving the catheter using the coordinate system of the GUI, the velocity vectors were be very high and prevented movement into the right ventricle. After using the scrollbars to manually control the servos and guide it to the right ventricle.
 
+![InSitu_Test](https://github.com/user-attachments/assets/66576977-16b4-4cbb-95d9-17b3c74b1b70)
+
+### "Teleoperations"
+
+![image](https://github.com/user-attachments/assets/2fa2cbcf-683b-4f2e-87aa-588779824f61)
