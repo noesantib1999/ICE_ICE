@@ -37,10 +37,16 @@ The full assembly of the robotic ICE catheter is available when navigating to th
 ### Mechanical Assembly:
 After printing, begin assembling the components. The Shaft_Support part is designed to connect two servos, while the ICE_Support_0000 serves to hold the ICE catheter. Position and secure the printed components to hold these parts in place. Ensure proper alignment and fit as per the CAD model.
 
+![Mech](https://github.com/user-attachments/assets/2c52713e-9417-4d96-b5b5-a5ff7f21f95e)
+
 ### Electrical Assembly:
 Wire the two Miuzei servos to the Teensy 4.0 as shown in the provided circuit diagram. Ensure all electrical connections are made securely, following the correct wiring paths for power and signal transmission between the components. Verify that all connections are stable and functional before proceeding to the next steps in testing and calibration.
 
 ![circuit](https://github.com/user-attachments/assets/4ba8add6-169e-4741-865c-dd9f1d21a488)
+
+The circuit on the breadboard should have a similar arrangement.
+
+![breadboard](https://github.com/user-attachments/assets/6cc4fd08-1e57-42a6-866c-6acfeca9daa7)
 
 
 ## Firmware
@@ -65,18 +71,23 @@ Included in this repository are two scripts intended to be run on a Teensy 4.0 (
 Commands must be passed to the Teensy as text strings with a format of either "Ax.x" or "Rx.x" where A and R refer to the antero-posterior and right-left catheter knobs to be controlled and x.x refers to any floating point number. Commands can either be sent through the Arduino IDE in the serial monitor or using the software GUI described below.
 
 ## Software
-Design the Python Graphical User Interface(GUI) 
+The objective for this part was to develop a graphical user interface (GUI) to enable intutive control of robot motion via the Teensy microcontroller.
 
+![GUI](https://github.com/user-attachments/assets/19fe92f3-274b-487e-b126-9bffe3123fa1)
 
 ## Experimental Setup
 
 ### In-Situ Testing 
+![InSitu](https://github.com/user-attachments/assets/8e0514d9-d63b-4417-b1f8-58abdafe40af)
+
 The experimental setup consisted of having the robotic ICE catheter connected to the ACUSON P500 system to get an ultrasound view of a human heart on the machine. To start, the P500 was connected via HDMI to a video capture unit, gathering the live ultrasound frame and sending it over to the main computer via USB connection. The image from the P500 would then show in the GUI program. 
+
+Note: The procedure can be replicated if the ICE catheter and ultrasound viewing system are compatible (both are from the same brand). Additionally, check whether the HDMI ports in the ultrasound system are IN or OUT, as video capture units tend to receive the image from OUT ports.
 
 The TEENSY_INTERFACE.ino code is uploaded into the Teensy 4.0 microcontroller, and remains connected via USB to the main computer. After closing the Arduino IDE program, go to a Python prorgamming software, open GUI_Live.py, and run the GUI. After the GUI is opened, the ultrasound tip of the ICE catheter is inserted into the container with the human heart. From here, the catheter can be oriented through clicking on the coordinate system or the scrollbars in the GUI.
 
 ### "Teleoperations" via video conferencing application
-One extra step considered for a method of teleoperation was the use of video conferencing software.
+One extra step considered for a method of teleoperation is the use of video conferencing software. By having two computers access the same conference link, the main computer (connected to the Teensy 4.0) can grant desktop control to the external computer and the latter can guide the ICE catheter through the GUI program. 
 
 ## Results
 
