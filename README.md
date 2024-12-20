@@ -33,6 +33,7 @@ Design, build, and test a 2-DOF robotic mechanism adapter for effective navigati
 ## Assembly
 ### CAD Assembly:
 The full assembly of the robotic ICE catheter is available when navigating to the CAD Designs folder, and into the "SolidWorks Files - Final" subfolder. Here, the different SLDPRT and SLDASM files that contribute to the complete 3D assembled view in SolidWorks can be located. The CAD Designs folder also has a "STL Files - Final" subfolder, which contains all the STL files needed for 3D printing, along with a short instruction set. You will need slicing software and a 3D printer, such as PrusaSlicer and the Prusa MK3S printer, respectively. Use PrusaSlicer to create a G-code for the STL files, and print each part from the G-code as required. Refer to the specifications in the short instruction set to ensure all parts are properly printed.
+
 ![CAD_Assem](https://github.com/user-attachments/assets/433dc117-a7c4-4965-8ba3-e9c54fd221bf)
 
 ### Mechanical Assembly:
@@ -48,7 +49,6 @@ Wire the two Miuzei servos to the Teensy 4.0 as shown in the provided circuit di
 On the breadboard, the arrangement should be as follows.
 
 ![breadboard](https://github.com/user-attachments/assets/6cc4fd08-1e57-42a6-866c-6acfeca9daa7)
-
 
 ## Firmware
 Included in this repository are two scripts intended to be run on a Teensy 4.0 (or equivalent board with modifications). These scripts should be uploaded to the Teensy board using a serial USB connection via the Arduino IDE. Each script is also capable of, but does not necessarily require, two-way communication with a computer via this serial USB connection. The functionality and intended use cases of each script are detailed below.
