@@ -67,4 +67,17 @@ Commands must be passed to the Teensy as text strings with a format of either "A
 ## Software
 Design the Python Graphical User Interface(GUI) 
 
+
 ## Experimental Setup
+
+### In-Situ Testing 
+The experimental setup consisted of having the robotic ICE catheter connected to the ACUSON P500 system to get an ultrasound view of a human heart on the machine. To start, the P500 was connected via HDMI to a video capture unit, gathering the live ultrasound frame and sending it over to the main computer via USB connection. The image from the P500 would then show in the GUI program. 
+
+The TEENSY_INTERFACE.ino code is uploaded into the Teensy 4.0 microcontroller, and remains connected via USB to the main computer. After closing the Arduino IDE program, go to a Python prorgamming software, open GUI_Live.py, and run the GUI. After the GUI is opened, the ultrasound tip of the ICE catheter is inserted into the container with the human heart. From here, the catheter can be oriented through clicking on the coordinate system or the scrollbars in the GUI.
+
+### "Teleoperations" via video conferencing application
+One extra step 
+
+## Results
+
+
