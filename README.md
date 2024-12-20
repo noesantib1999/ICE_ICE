@@ -33,6 +33,7 @@ Design, build, and test a 2-DOF robotic mechanism adapter for effective navigati
 ## Assembly
 ### CAD Assembly:
 The full assembly of the robotic ICE catheter is available when navigating to the CAD Designs folder, and into the "SolidWorks Files - Final" subfolder. Here, the different SLDPRT and SLDASM files that contribute to the complete 3D assembled view in SolidWorks can be located. The CAD Designs folder also has a "STL Files - Final" subfolder, which contains all the STL files needed for 3D printing, along with a short instruction set. You will need slicing software and a 3D printer, such as PrusaSlicer and the Prusa MK3S printer, respectively. Use PrusaSlicer to create a G-code for the STL files, and print each part from the G-code as required. Refer to the specifications in the short instruction set to ensure all parts are properly printed.
+![CAD_Assem](https://github.com/user-attachments/assets/433dc117-a7c4-4965-8ba3-e9c54fd221bf)
 
 ### Mechanical Assembly:
 After printing, begin assembling the components. The Shaft_Support part is designed to connect two servos, while the ICE_Support_0000 serves to hold the ICE catheter. Position and secure the printed components to hold these parts in place. Ensure proper alignment and fit as per the CAD model.
