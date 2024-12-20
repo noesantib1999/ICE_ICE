@@ -107,10 +107,16 @@ One extra step considered for a method of teleoperation is the use of video conf
 ## Results
 ### In-Situ
 
-The experiments were attempted on two different human hearts. For Heart #1, placed in a small container with water, the catheter entered through the IVC and was able to reach the right atrium. However, after moving the catheter using the coordinate system of the GUI, the velocity vectors were be very high and prevented movement into the right ventricle. After using the scrollbars to manually control the servos and guide it to the right ventricle.
+The experiments were attempted on two different human hearts from the Visible Heart Lab's Heart Library. For Heart #1, placed in a small container with water, the catheter entered through the IVC and was able to reach the right atrium. However, after moving the catheter using the coordinate system of the GUI, the velocity vectors were be very high and prevented movement into the right ventricle. After using the scrollbars to manually control the servos and guide it to the right ventricle.
 
 ![InSitu_Test](https://github.com/user-attachments/assets/66576977-16b4-4cbb-95d9-17b3c74b1b70)
 
+For Heart #2, the experiment was done in a wider container, which caused the heart to have less constrained movement and follow the displacement of the ICE catheter, affecting the ultrasound image result. After grabbing ahold of the heart, the movement of the ICE catheter performed similar to Heart #1.
+
+Some considerations to add after this initial experimental setup is to set the heart in a static position in the container to have effective movement of the ultrasound tip through the heart chambers. Additionally, it is recommended that the velocity vectors are reduced to prevent any quick changes in movement inside the heart and affecting the patient, as well as having a position-based system for more effective ICE catheter orientation.
+
 ### "Teleoperations"
+
+This approach was only tested in Heart #1. From the external computer, evident lag and low resoulution quality were found, making it challenging to move the scrollbars and observe the desired heart regions via the ultrasound. Although an effective proof of concept, it is recommended to consider other approaches. 
 
 ![image](https://github.com/user-attachments/assets/2fa2cbcf-683b-4f2e-87aa-588779824f61)
