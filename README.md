@@ -72,7 +72,17 @@ Included in this repository are two scripts intended to be run on a Teensy 4.0 (
 Commands must be passed to the Teensy as text strings with a format of either "Ax.x" or "Rx.x" where A and R refer to the antero-posterior and right-left catheter knobs to be controlled and x.x refers to any floating point number. Commands can either be sent through the Arduino IDE in the serial monitor or using the software GUI described below.
 
 ## Software
-The objective for this part was to develop a graphical user interface (GUI) to enable intutive control of robot motion via the Teensy microcontroller.
+The objective for this part was to develop a graphical user interface (GUI) to enable intutive control of robot motion via the Teensy microcontroller. Taking this into consideration, the GUI would allow users to input desired velocities for two axes - Left/Right and Posterior/Anterior -, implementing a smooth gradual velocity adjustment to the desired location. Additionally, the GUI would have a coordinate system to click on and automatically guide the catheter through precise motion control.
+
+### Graphical User Interface (GUI)
+The purpose of this GUI is to enable users control of the robotic ICE catheter via serial connection. For starters, open GUI_Live.py and make sure that the microcontroller's serial USB connection is the same as the "port" value in line 11 of the code; if not, update it. Once updated, run the code in a Python programming software to open the GUI.
+
+The GUI contains the following items:
+- E-STOP button: located in the top left part of the screen in a bright red color, it serves as an override button and instantly changes the robotic ICE catheter's velocity vector to zero.
+- Velocity update rate: placed below the E-STOP button to the left. With these three buttons, choose the velocity delay value, with the default value set as 10 (smallest is fastest).
+- Instantaneous velocity scrollbars: with this input method, change the angular velocity rate instantly by moving the scrollbars, each labeled with their respective movement axis.
+- Coordinate system: located below the button and scrollbars. Click on the coordinate system to change the velocity vector, moving the catheter at the desired rate.
+- Live Ultrasound Feedback: located on the right side of the screen; a live image of the ultrasound can be displayed using VideoCapture() and through effective connection from the ultrasound viewing system to the main computer using a video capture unit.
 
 ![GUI](https://github.com/user-attachments/assets/19fe92f3-274b-487e-b126-9bffe3123fa1)
 
@@ -83,12 +93,14 @@ The objective for this part was to develop a graphical user interface (GUI) to e
 
 The experimental setup consisted of having the robotic ICE catheter connected to the ACUSON P500 system to get an ultrasound view of a human heart on the machine. To start, the P500 was connected via HDMI to a video capture unit, gathering the live ultrasound frame and sending it over to the main computer via USB connection. The image from the P500 would then show in the GUI program. 
 
-Note: The procedure can be replicated if the ICE catheter and ultrasound viewing system are compatible (both are from the same brand). Additionally, check whether the HDMI ports in the ultrasound system are IN or OUT, as video capture units tend to receive the image from OUT ports.
+- Note: The procedure can be replicated if the ICE catheter and ultrasound viewing system are compatible (both are from the same brand). Additionally, check whether the HDMI ports in the ultrasound system are IN or OUT, as video capture units tend to receive the image from OUT ports.
 
 The TEENSY_INTERFACE.ino code is uploaded into the Teensy 4.0 microcontroller, and remains connected via USB to the main computer. After closing the Arduino IDE program, go to a Python prorgamming software, open GUI_Live.py, and run the GUI. After the GUI is opened, the ultrasound tip of the ICE catheter is inserted into the container with the human heart. From here, the catheter can be oriented through clicking on the coordinate system or the scrollbars in the GUI.
 
 ### "Teleoperations" via video conferencing application
 One extra step considered for a method of teleoperation is the use of video conferencing software. By having two computers access the same conference link, the main computer (connected to the Teensy 4.0) can grant desktop control to the external computer and the latter can guide the ICE catheter through the GUI program. 
+
+![VC_Tele](https://github.com/user-attachments/assets/8a37e7d6-7cf4-4bc2-9a2e-971435b32b6e)
 
 ## Results
 
