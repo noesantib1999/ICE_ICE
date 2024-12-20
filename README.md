@@ -44,7 +44,25 @@ Wire the two Miuzei servos to the Teensy 4.0 as shown in the provided circuit di
 
 
 ## Firmware
-Two Miuzei servos 25 kg 270°, a teensy 4.0, an ice catheter, a DRV8833 H-Bridge for driving up to two DC motors
+Included in this repository are two scripts intended to be run on a Teensy 4.0 (or equivalent board with modifications). These scripts should be uploaded to the Teensy board using a serial USB connection via the Arduino IDE. Each script is also capable of, but does not necessarily require, two-way communication with a computer via this serial USB connection. The functionality and intended use cases of each script are detailed below.
+
+### TEENSY INTERFACE
+- Purpose: The TEENSY INTERFACE script directly controls the velocities of each servo for use in controlling ICE catheter manipulation. It is capable of receiving velocity commands over serial interface at 9600 baud. The script can be run in an emulation mode (defined by the variable "emulationMode") to simulate a series of potential velocity commands to each servo. 
+- Instructions:
+    - Setup:   Verify system definitions for servo positional travel limit and center position (refer to SERVO_CALIBRATION to verify these limits). We recommend using a center position of 135 and travel limit of 80 during typical operating conditions with a 1:1 servo gear ratio. 
+    - General: Ensure that servos are connected to power and their respective pins. Connect the Teensy to a computer establishing a USB connection.
+    - Use: 
+        - Emulation true - The Teensy will not wait for nor respond to instructions though serial communications.
+        - Emulation false - Individual servo velocities are controlled by the Teensy as directed by serial communication commands. 
+        
+### SERVO CALIBRATION
+- Purpose: This script directly controls the positions of each servo for use in initial hardware assembly and troubleshooting. Servos are initially moved to "servo_center_pos" defaulting at 135 degrees (recommended). Script will then accept serial inputs to control servo position.
+- Instructions: 
+    - General:  Ensure that servos are connected to power and their respective pins. Connect the Teensy to a computer establishing a USB connection.
+    - Use:      Prior to assembling the ICE hardware, ensure servos positions are set to 135 using this script and can otherwise move freely. Assemble servo gear interface with the ICE catheter in its home position (completely straight). Once assembled, ensure servos can spin by setting the position to a slightly different value using the above format. Progressively test values closer to both 0 and 270 and identify the furthest distance the servos can spin from the home position. Use this to update "servo_pos_limit" for both this script and "TEENSY_INTERFACE."
+
+### Note on firmware commands via serial communication:
+Commands must be passed to the Teensy as text strings with a format of either "Ax.x" or "Rx.x" where A and R refer to the antero-posterior and right-left catheter knobs to be controlled and x.x refers to any floating point number. Commands can either be sent through the Arduino IDE in the serial monitor or using the software GUI described below.
 
 ## Software
 Design the Python Graphical User Interface(GUI) 

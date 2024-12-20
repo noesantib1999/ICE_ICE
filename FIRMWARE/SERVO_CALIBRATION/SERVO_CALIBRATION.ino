@@ -22,7 +22,7 @@ Instructions:
 #define servo_LR_pin 15
 
 // System definitions:
-#define servo_pos_limit 135 // Maximum amount servo should turn in a given direction in degrees, max is 135
+#define servo_pos_limit 80 // Maximum amount servo should turn in a given direction in degrees, max is 135
 #define servo_center_pos 135 // Servo position when catheter is straight
 
 Servo servo_AP;

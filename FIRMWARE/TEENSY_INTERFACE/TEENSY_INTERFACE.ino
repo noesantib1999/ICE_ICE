@@ -23,7 +23,7 @@ Instructions:
 #define servo_LR_pin 15
 
 // System definitions:
-#define servo_pos_limit 90 // Maximum amount servo should turn in a given direction in degrees, max is 135
+#define servo_pos_limit 80 // Maximum amount servo should turn in a given direction in degrees, max is 135
 #define servo_center_pos 135 // Servo position when catheter is straight
 
 Servo servo_AP;
@@ -98,24 +98,25 @@ void setup() {
   temp_Pos_AP = setServoPos(servo_AP, servo_center_pos+10);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_pos+10);
   //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
-  delay(2000);
+  delay(500);
   temp_Pos_AP = setServoPos(servo_AP, servo_center_pos);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_pos);
   //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
-  delay(2000);
+  delay(500);
   temp_Pos_AP = setServoPos(servo_AP, servo_center_pos-10);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_pos-10);
   //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
-  delay(2000);
+  delay(500);
   temp_Pos_AP = setServoPos(servo_AP, servo_center_pos);
   temp_Pos_LR = setServoPos(servo_LR, servo_center_pos);
   //  if (!emulationMode) handleSerialOutput(0, temp_Pos_AP, 0, temp_Pos_LR, 0);
-  delay(2000);
+  delay(500);
 
   if (!emulationMode){
   Serial.begin(9600);
   Serial.println("Listening to serial input\n");
   Serial.clear();
+  delay(500);
   }
 
 }
