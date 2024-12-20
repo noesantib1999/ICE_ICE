@@ -44,7 +44,7 @@ Wire the two Miuzei servos to the Teensy 4.0 as shown in the provided circuit di
 
 ![circuit](https://github.com/user-attachments/assets/4ba8add6-169e-4741-865c-dd9f1d21a488)
 
-The circuit on the breadboard should have a similar arrangement.
+On the breadboard, the arrangement should be as follows.
 
 ![breadboard](https://github.com/user-attachments/assets/6cc4fd08-1e57-42a6-866c-6acfeca9daa7)
 
