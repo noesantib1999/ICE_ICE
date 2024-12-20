@@ -19,8 +19,8 @@ Instructions:
 #include <Servo.h>
 
 // Pin definitions:
-#define servo_AP_pin 35
-#define servo_LR_pin 36
+#define servo_AP_pin 14
+#define servo_LR_pin 15
 
 // System definitions:
 #define servo_pos_limit 80 // Maximum amount servo should turn in a given direction in degrees, max is 135
