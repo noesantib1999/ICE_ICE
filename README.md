@@ -24,7 +24,7 @@ Design, build, and test a 2-DOF robotic mechanism adapter for effective navigati
 
 ### Other Materials
 - 3D Printed Parts (PLA filament, 15% infill) - see CAD Designs folder for files
-- AC-to-DC Power Supply (~5.9 V)
+- AC-to-DC Power Supply (4.8-8.4 V Output)
 - 2 D-Profile Rotary Shafts (1/2" Diameter, 6" Long, 1045 Carbon Steel) - McMaster number: 8632T134
 - 4 Oil-Embedded Bronze Sleeve Bearings (5/8" Housing ID, 5/16" Long, for 1/2" Shaft Diameter) - McMaster number: 6391K736
 - Breadboard
