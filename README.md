@@ -21,6 +21,7 @@ Design, build, and test a 2-DOF robotic mechanism adapter for effective navigati
 - Teensy 4.0 w/ Micro-USB to USB cable
 - 2 Miuzei High-Torque (25 kg*cm) Waterproof Servo Motors w/ cross-shaped servo arm
 - Video capture unit (ex. ElGato HD60 X) w/ HDMI and USB connections
+- Laptop w/ Python and Arduino/C++ coding software (x2 if using teleoperations)
 
 ### Other Materials
 - 3D Printed Parts (PLA filament, 15% infill) - see CAD Designs folder for files
@@ -86,6 +87,11 @@ The GUI contains the following items:
 
 ![GUI](https://github.com/user-attachments/assets/19fe92f3-274b-487e-b126-9bffe3123fa1)
 
+### Teleoperations via UDP/Sockets
+
+Two additional codes are also included in the Software folder, named Tele_GUI_Send.py and Tele_ICE_Receive.py, used for teleoperations with sockets and UDP packets. For this approach, use one computer as the "sender", which will run the Tele_GUI_Send.py code and utilize the GUI the same way as before to send the velocity vectors as UDP packets to the "receiver", another computer which runs the Tele_ICE_Receiver.py code and connects to the Teensy microcontroller via serial connection.
+- Note: make sure both sets of code have the same gateway port number to ensure effective connection between the computers. Additionally, search for the receiver's IP address via "ipconfig" in your command window, and copy/paste the IPv4 address into the Tele_GUI_Send.py script in line 8.
+
 ## Experimental Setup
 
 ### In-Situ Testing 
@@ -104,6 +110,9 @@ One extra step considered for a method of teleoperation is the use of video conf
 
 ![VC_Tele](https://github.com/user-attachments/assets/8a37e7d6-7cf4-4bc2-9a2e-971435b32b6e)
 
+### UDP/Sockets Teleoperations
+Using Tele_GUI_Send.py and Tele_ICE_Receive.py, the "sender" computer would run the GUI program, operate the controls, and send the infomation via UPD packets to the "receiver" computer, operating the robotic ICE catheter.
+
 ## Results
 ### In-Situ
 
@@ -119,4 +128,22 @@ Some considerations to add after this initial experimental setup is to set the h
 
 This approach was only tested in Heart #1. From the external computer, evident lag and low resoulution quality were found, making it challenging to move the scrollbars and observe the desired heart regions via the ultrasound. Although an effective proof of concept, it is recommended to consider other approaches. 
 
-![image](https://github.com/user-attachments/assets/2fa2cbcf-683b-4f2e-87aa-588779824f61)
+![Zoom_tele](https://github.com/user-attachments/assets/2fa2cbcf-683b-4f2e-87aa-588779824f61)
+
+### Teleoperations
+
+Due to time constraints, this approach was not yet tested in a human heart. However, teleoperation results showed low-latency communications between the two computers, making it an effective method for sending data over the internet to operate the robotic ICE catheter. One observation from these tests, nonetheless, is that when utilizing the scrollbars for changing the velocity vectors, the Tele_ICE_Receiver.py code waited for the main "sender" computer to stop sending data to ultimately perform the movement. Further examination is required to verify whether this approach is helpful or can place challenges when needing to send multiple data packets in a short time period.
+
+![Tele_Test](https://github.com/user-attachments/assets/af1b8d5c-1c87-46f9-8ad6-44e84cc3f9f3)
+
+## Credits
+ME 8284 - Intermediate Robotics with Medical Applications (Graduate-Level Course)
+
+Team Prince:
+Team Manager - Noé Bazán (baznp001@umn.edu)
+Mechanical Leads - Anders Torp (gloeg011@umn.edu) and Rucha Pansare (pansa008@umn.edu)
+Embedded Lead - Michael Feldkamp (feldk066@umn.edu)
+Software Lead - Shrivatsa Deshmukh (deshm080@umn.edu)
+Floater - Tianning Li (li003291@umn.edu)
+
+Presentation Link (from December 10th 2024): https://docs.google.com/presentation/d/189g-k64IC7r7hnKr-tXK-r5zNP0DUaRn04MexWa3yLw/edit?usp=sharing
