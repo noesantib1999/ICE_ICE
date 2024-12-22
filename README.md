@@ -139,11 +139,11 @@ Due to time constraints, this approach was not yet tested in a human heart. Howe
 ## Credits
 ME 8284 - Intermediate Robotics with Medical Applications (Graduate-Level Course)
 
-Team Prince:
-Team Manager - Noé Bazán (baznp001@umn.edu)
-Mechanical Leads - Anders Torp (gloeg011@umn.edu) and Rucha Pansare (pansa008@umn.edu)
-Embedded Lead - Michael Feldkamp (feldk066@umn.edu)
-Software Lead - Shrivatsa Deshmukh (deshm080@umn.edu)
+Team Prince: <br>
+Team Manager - Noé Bazán (baznp001@umn.edu) <br>
+Mechanical Leads - Anders Torp (gloeg011@umn.edu) and Rucha Pansare (pansa008@umn.edu)<br>
+Embedded Lead - Michael Feldkamp (feldk066@umn.edu)<br>
+Software Lead - Shrivatsa Deshmukh (deshm080@umn.edu)<br>
 Floater - Tianning Li (li003291@umn.edu)
 
 Presentation Link (from December 10th 2024): https://docs.google.com/presentation/d/189g-k64IC7r7hnKr-tXK-r5zNP0DUaRn04MexWa3yLw/edit?usp=sharing
